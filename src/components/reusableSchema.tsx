@@ -1,13 +1,15 @@
 import React, { FC, ChangeEvent } from 'react';
 
-interface Props {
+interface InputProps {
   label: string;
   name: string;
   value: string;
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  className: string;
+  placeholder: string;
 }
 
-const Input: FC<Props> = ({ label, name, value, onChange }) => {
+const Input: FC<InputProps> = ({ label, name, value, onChange }) => {
   return (
     <label className="block text-gray-700 text-sm font-bold mb-2">
       {label}
@@ -76,11 +78,13 @@ const Radio: React.FC<RadioProps> = ({ label, name, options, value, onChange }) 
   </div>
 );
 
-type ButtonProps = {
+interface ButtonProps {
   children: React.ReactNode;
-  onClick: () => void;
-  className?: string;
-};
+  type: string;
+  className: string;
+  onClick?: () => void;
+  disabled?: boolean;
+}
 
 const PrimaryButton: React.FC<ButtonProps> = ({ children, onClick, className }) => {
   return (

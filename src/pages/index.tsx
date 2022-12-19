@@ -1,113 +1,116 @@
 import React, { useState } from 'react';
-import { useQuery } from "react-query";
-import { Input, Select, Radio, PrimaryButton, SecondaryButton } from '../components/reusableSchema';
+import Link from 'next/link';
+import { Input, PrimaryButton, SecondaryButton } from '../components/reusableSchema';
+import { z } from "zod";
 
-// A function that fetches data from an API
-const fetchUsers = async () => {
-  const res = await fetch("https://jsonplaceholder.typicode.com/users");
-  return res.json();
-};
-
-// An array of options to be used in the Select and Radio components
-const options = [
-  { value: 'option1', label: 'Option 1' },
-  { value: 'option2', label: 'Option 2' },
-  { value: 'option3', label: 'Option 3' },];
-
-// The Home component, which is a functional component
 const Home: React.FC = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+  const [storedForm, setStoredForm] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+  const [errors, setErrors] = useState<string[]>([]);
 
-  // Use the useQuery hook to fetch data from the API
-  const { data, isLoading, error } = useQuery("users", fetchUsers);
 
-  // The inputValue state variable, initialized with an empty string
-  const [inputValue, setInputValue] = useState('');
-  // The selectValue state variable, initialized with the value 'option1'
-  const [selectValue, setSelectValue] = useState('option1');
-  // The radioValue state variable, initialized with the value 'option1'
-  const [radioValue, setRadioValue] = useState('option1');
-  // The submittedValues state variable, initialized with an empty array
-  const [submittedValues, setSubmittedValues] = useState<string[]>([]);
+  const formDataSchema = z.object({
+    name: z.string().min(2).max(100),
+    email: z.string().email(),
+    message: z.string().min(2).max(100)
+  });
+  
 
-  // A function to be called when the value of the Input component changes
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(event.target.value);
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setFormData({ ...formData, [name]: value });
   };
 
-  // A function to be called when the value of the Select component changes
-  const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectValue(event.target.value);
-  };
-
-  // A function to be called when the value of the Radio component changes
-  const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setRadioValue(event.target.value);
-  };
-
-  // A function to be called when the PrimaryButton component is clicked
-  function handleSubmit() {
-    // Check if the input value is empty
-    if (!inputValue) {
-      // If the input value is empty, return early
-      return;
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    try {
+      const validatedFormData = formDataSchema.parse(formData);
+      setStoredForm(validatedFormData);
+      setErrors([]);
+      // submit validatedFormData to server or do something else with it here
+    } catch (error ) {
+      if(error instanceof z.ZodError)
+      setErrors([...errors, error.message]);
     }
-    // Call the function that takes a value as an argument here
-    setSubmittedValues([...submittedValues, inputValue]);
-    // Reset the input value to an empty string
-    setInputValue('');
-  }
-
-  // A function to be called when the SecondaryButton component is clicked
-  const handleReset = () => {
-    // Reset the input value to an empty string
-    setInputValue('');
-    // Reset the submittedValues array to an empty array
-    setSubmittedValues([]);
   };
 
-  // A type to define the shape of the data returned from the API 
-  type User = {
-    id: string;
-    name: string;
-    email: string;
-  }
-
-  // If the data is loading, return a loading message
-  if (isLoading) return <div>Loading...</div>;
-
-  // If there is an error, return an error message
-  if (error) return <div>Error fetching from the API </div>;
-
+  const handleAbort = () => {
+    setFormData({
+      name: '',
+      email: '',
+      message: ''
+    })
+    setErrors([]);
+    
+  };
 
   return (
     <>
-    <br/>
-    <h1 className="text-3xl font-bold">Reusable Components</h1>
-    <br/>
+    <form onSubmit={handleSubmit} className="mx-10">
+      <Input
+        label='Name'
+        name="name"
+        value={formData.name}
+        onChange={handleChange}
+        className="w-full py-2 px-3 rounded-md text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        placeholder="Name"
+      />
+      <Input
+        label='Email'
+        name="email"
+        value={formData.email}
+        onChange={handleChange}
+        className="w-full py-2 px-3 rounded-md text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        placeholder="Email"
+      />
+      <Input
+        label='Message'
+        name="message"
+        value={formData.message}
+        onChange={handleChange}
+        className="w-full py-2 px-3 rounded-md text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        placeholder="Message"
+      />
+      <PrimaryButton
+        type="submit"
+        className="w-full py-2 px-3 rounded-md text-white bg-blue-500 hover:bg-blue-700 focus:outline-none focus:shadow-outline"
+      >
+        Submit
+      </PrimaryButton>
+      <SecondaryButton
+        type="button"
+        onClick={handleAbort}
+        className="w-full py-2 px-3 rounded-md text-gray-700 hover:text-gray-800 focus:outline-none focus:shadow-outline"
+        disabled={Object.values(formData).every(val => val === '')}
+      >
+        Abort
+      </SecondaryButton>
+    </form>
+    
     <div>
-      <Input label="Input" name="input" value={inputValue} onChange={handleInputChange} />
-      <Select label="Select" name="select" options={options} value={selectValue} onChange={handleSelectChange} />
-      <Radio label="Radio" name="radio" options={options} value={radioValue} onChange={handleRadioChange} />
-      <PrimaryButton onClick={handleSubmit}>Submit</PrimaryButton>
-      <SecondaryButton onClick={handleReset}>Abort</SecondaryButton>
+      <h2 className="text-2xl font-bold">Stored Home Data</h2>
+      <p>Name: {storedForm.name}</p>
+      <p>Email: {storedForm.email}</p>
+      <p>Message: {storedForm.message}</p>
     </div>
-    <br/>
-    {submittedValues.length > 0 && <><h2 className="text-2xl font-bold">Submitted data</h2>
-    <div className="bg-gray-300 p-4 rounded-lg shadow-lg">
-    {submittedValues.length > 0 && submittedValues.map((value, index) => (
-          <li key={index} className="mb-4">{value}</li>
-        ))}
-    </div></>}
-    <br/>
-    <h2 className="text-2xl font-bold">React Query</h2>
-      <div className="bg-gray-300 p-4 rounded-lg shadow-lg">
-        {data.map((user: User) => (
-          <div key={user.id} className="mb-4">
-            <h3 className="text-lg font-bold">{user.name}</h3>
-            <p className="text-sm text-gray-700">{user.email}</p>
-          </div>
-        ))}
-      </div>
+    {errors.length > 0 && (
+  <ul className="my-4">
+    {errors.slice(-1).map((error, index) => {
+    return <li key={index} className="text-red-500">{error}</li>
+    })}
+  </ul>
+)}
+  <SecondaryButton type="button" className=''>
+    <Link href="/examples">To examples and API state handling</Link>
+  </SecondaryButton>
     </>
   );
 };
