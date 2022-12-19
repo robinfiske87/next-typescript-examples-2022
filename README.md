@@ -1,5 +1,9 @@
 Download repo
 
+Navigate to root of repo
+
+npm i (or whatever manager package manager you use)
+
 Initiate locally with npm run dev
 
 Next framework using jsx syntax. Typescript initiated. Styling in Tailwind.
