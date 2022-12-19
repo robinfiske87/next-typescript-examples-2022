@@ -96,7 +96,7 @@ const Home: React.FC = () => {
     </form>
     
     <div>
-      <h2 className="text-2xl font-bold">Stored Home Data</h2>
+      <h2 className="text-2xl font-bold">Stored Form Data</h2>
       <p>Name: {storedForm.name}</p>
       <p>Email: {storedForm.email}</p>
       <p>Message: {storedForm.message}</p>
