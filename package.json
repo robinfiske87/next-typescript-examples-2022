@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "next build",
-    "dev": "next dev",
+    "dev": "nodemon --watch src --exec \"next dev\"",
     "lint": "next lint",
     "start": "next start"
   },
@@ -24,6 +24,7 @@
     "autoprefixer": "^10.4.7",
     "eslint": "^8.26.0",
     "eslint-config-next": "13.0.2",
+    "nodemon": "^2.0.20",
     "postcss": "^8.4.14",
     "prettier": "^2.7.1",
     "prettier-plugin-tailwindcss": "^0.1.13",
