@@ -100,7 +100,7 @@ const Examples: React.FC = () => {
         ))}
     </div></>}
 
-    <SecondaryButton type="button">
+    <SecondaryButton >
     <Link href="/">Back to form</Link>
   </SecondaryButton>
     <br/>
