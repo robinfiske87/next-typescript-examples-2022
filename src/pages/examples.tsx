@@ -81,7 +81,7 @@ const Examples: React.FC = () => {
 
 
   return (
-    <>
+    <main className="mx-20 my-20 bg-indigo-50">
     <br/>
     <h1 className="text-3xl font-bold">Reusable Components</h1>
     <br/>
@@ -113,7 +113,7 @@ const Examples: React.FC = () => {
           </div>
         ))}
       </div>
-    </>
+    </main>
   );
 };
 

@@ -31,6 +31,7 @@ const Home: React.FC = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (Object.values(formData).every(val => val === '')) return setErrors([]);
     try {
       const validatedFormData = formDataSchema.parse(formData);
       setStoredForm(validatedFormData);
@@ -43,18 +44,26 @@ const Home: React.FC = () => {
   };
 
   const handleAbort = () => {
+    
     setFormData({
       name: '',
       email: '',
       message: ''
     })
+
+    setStoredForm({
+      name: '',
+      email: '',
+      message: ''
+    })
+
     setErrors([]);
     
   };
 
   return (
-    <>
-    <form onSubmit={handleSubmit} className="mx-10">
+    <main className="mx-20 my-20 bg-indigo-50">
+    <form onSubmit={handleSubmit} >
       <Input
         label='Name'
         name="name"
@@ -89,7 +98,7 @@ const Home: React.FC = () => {
         type="button"
         onClick={handleAbort}
         className="w-full py-2 px-3 rounded-md text-gray-700 hover:text-gray-800 focus:outline-none focus:shadow-outline"
-        disabled={Object.values(formData).every(val => val === '')}
+        // disabled={Object.values(formData).every(val => val === '')}
       >
         Abort
       </SecondaryButton>
@@ -101,7 +110,7 @@ const Home: React.FC = () => {
       <p>Email: {storedForm.email}</p>
       <p>Message: {storedForm.message}</p>
     </div>
-    {errors.length > 0 && (
+    {errors.length > 0  && (
   <ul className="my-4">
     {errors.slice(-1).map((error, index) => {
     return <li key={index} className="text-red-500">{error}</li>
@@ -111,7 +120,7 @@ const Home: React.FC = () => {
   <SecondaryButton type="button" className=''>
     <Link href="/examples">To examples and API state handling</Link>
   </SecondaryButton>
-    </>
+    </main>
   );
 };
 
