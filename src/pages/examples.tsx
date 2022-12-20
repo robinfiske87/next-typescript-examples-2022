@@ -82,7 +82,6 @@ const Examples: React.FC = () => {
 
   return (
     <main className="mx-20 my-20 bg-indigo-50">
-    <br/>
     <h1 className="text-3xl font-bold">Reusable Components</h1>
     <br/>
     <div>
@@ -94,7 +93,7 @@ const Examples: React.FC = () => {
     </div>
     <br/>
     {submittedValues.length > 0 && <><h2 className="text-2xl font-bold">Submitted data</h2>
-    <div className="bg-gray-300 p-4 rounded-lg shadow-lg">
+    <div className="bg-indigo-200 p-4 rounded-lg shadow-lg m-1">
     {submittedValues.length > 0 && submittedValues.map((value, index) => (
           <li key={index} className="mb-4">{value}</li>
         ))}
@@ -104,8 +103,9 @@ const Examples: React.FC = () => {
     <Link href="/">Back to form</Link>
   </SecondaryButton>
     <br/>
+    <br/>
     <h2 className="text-2xl font-bold">React Query</h2>
-      <div className="bg-gray-300 p-4 rounded-lg shadow-lg">
+      <div className="bg-indigo-200 p-4 rounded-lg shadow-lg m-1">
         {data.map((user: User) => (
           <div key={user.id} className="mb-4">
             <h3 className="text-lg font-bold">{user.name}</h3>

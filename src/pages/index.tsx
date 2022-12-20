@@ -16,11 +16,11 @@ const Home: React.FC = () => {
   });
   const [errors, setErrors] = useState<string[]>([]);
 
-
+// Schema for form validaton. Name can be any string between 1 and 40 characters long, email must be a valid email address and message can be any string between 1 and 100 characters long.
   const formDataSchema = z.object({
-    name: z.string().min(2).max(100),
+    name: z.string().min(1).max(40).regex(/^[a-zA-Z]+(\s[a-zA-Z]+)?$/),
     email: z.string().email(),
-    message: z.string().min(2).max(100)
+    message: z.string().min(1).max(100)
   });
   
 
@@ -31,6 +31,7 @@ const Home: React.FC = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    // Check if all fields are empty and return if true
     if (Object.values(formData).every(val => val === '')) return setErrors([]);
     try {
       const validatedFormData = formDataSchema.parse(formData);
@@ -39,12 +40,11 @@ const Home: React.FC = () => {
       // submit validatedFormData to server or do something else with it here
     } catch (error ) {
       if(error instanceof z.ZodError)
-      setErrors([...errors, error.message]);
+      setErrors(error.issues.map(issue => issue.message));
     }
   };
 
   const handleAbort = () => {
-    
     setFormData({
       name: '',
       email: '',
@@ -90,25 +90,29 @@ const Home: React.FC = () => {
       </PrimaryButton>
       <SecondaryButton
         onClick={handleAbort}
-        // disabled={Object.values(formData).every(val => val === '')}
       >
         Abort
       </SecondaryButton>
     </form>
-    
-    <div>
-      <h2 className="text-2xl font-bold">Stored Form Data</h2>
-      <p>Name: {storedForm.name}</p>
-      <p>Email: {storedForm.email}</p>
-      <p>Message: {storedForm.message}</p>
-    </div>
+
+    {// Display errors if there are any
+    }
     {errors.length > 0  && (
-  <ul className="my-4">
-    {errors.slice(-1).map((error, index) => {
-    return <li key={index} className="text-red-500">{error}</li>
-    })}
-  </ul>
-)}
+    <ul className="my-4">
+     {errors.map((error, index) => {
+       return <li key={index} className="text-red-500">{error}</li>
+      })}
+    </ul>
+    )}
+    {!Object.values(storedForm).every(val => val === '') && (
+        <div>
+          <h2 className="text-2xl font-bold">Stored Form Data</h2>
+          <p>Name: {storedForm.name}</p>
+          <p>Email: {storedForm.email}</p>
+          <p>Message: {storedForm.message}</p>
+        </div>
+      )}
+    
   <SecondaryButton >
     <Link href="/examples">To examples and API state handling</Link>
   </SecondaryButton>
