@@ -63,59 +63,59 @@ const Home: React.FC = () => {
 
   return (
     <main className="mx-20 my-20 bg-indigo-50">
-    <form onSubmit={handleSubmit} >
-      <Input
-        label='Name'
-        name="name"
-        value={formData.name}
-        onChange={handleChange}
-        placeholder="Name"
-      />
-      <Input
-        label='Email'
-        name="email"
-        value={formData.email}
-        onChange={handleChange}
-        placeholder="Email"
-      />
-      <Input
-        label='Message'
-        name="message"
-        value={formData.message}
-        onChange={handleChange}
-        placeholder="Message"
-      />
-      <PrimaryButton>
-        Submit
-      </PrimaryButton>
-      <SecondaryButton
-        onClick={handleAbort}
-      >
-        Abort
-      </SecondaryButton>
-    </form>
+      <form onSubmit={handleSubmit} >
+        <Input
+          label='Name'
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+          placeholder="Name"
+        />
+        <Input
+          label='Email'
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          placeholder="Email"
+        />
+        <Input
+          label='Message'
+          name="message"
+          value={formData.message}
+          onChange={handleChange}
+          placeholder="Message"
+        />
+        <PrimaryButton>
+          Submit
+        </PrimaryButton>
+        <SecondaryButton
+          onClick={handleAbort}
+        >
+          Abort
+        </SecondaryButton>
+      </form>
 
-    {// Display errors if there are any
-    }
-    {errors.length > 0  && (
-    <ul className="my-4">
-     {errors.map((error, index) => {
-       return <li key={index} className="text-red-500">{error}</li>
-      })}
-    </ul>
-    )}
-    {!Object.values(storedForm).every(val => val === '') && (
-        <div>
-          <h2 className="text-2xl font-bold">Stored Form Data</h2>
-          <p>Name: {storedForm.name}</p>
-          <p>Email: {storedForm.email}</p>
-          <p>Message: {storedForm.message}</p>
-        </div>
+      {// Display errors if there are any
+      }
+      {errors.length > 0  && (
+      <ul className="my-4">
+      {errors.map((error, index) => {
+        return <li key={index} className="text-red-500">{error}</li>
+        })}
+      </ul>
       )}
+      {!Object.values(storedForm).every(val => val === '') && (
+          <div>
+            <h2 className="text-2xl font-bold">Stored Form Data</h2>
+            <p>Name: {storedForm.name}</p>
+            <p>Email: {storedForm.email}</p>
+            <p>Message: {storedForm.message}</p>
+          </div>
+        )}
     
-  <NavigationButton >
-    <Link href="/examples">To examples and API state handling</Link>
-  </NavigationButton>
+      <NavigationButton >
+        <Link href="/examples">To examples and API state handling</Link>
+      </NavigationButton>
     </main>
   );
 };

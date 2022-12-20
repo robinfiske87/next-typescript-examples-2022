@@ -100,8 +100,8 @@ const Examples: React.FC = () => {
     </div></>}
 
     <NavigationButton >
-    <Link href="/">Back to form</Link>
-  </NavigationButton>
+      <Link href="/">Back to form</Link>
+    </NavigationButton>
     <br/>
     <br/>
     <h2 className="text-2xl font-bold">React Query</h2>
