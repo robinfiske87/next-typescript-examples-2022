@@ -106,4 +106,15 @@ const SecondaryButton: React.FC<ButtonProps> = ({ children, onClick, }) => {
   );
 };
 
-export { Input, Select, Radio, PrimaryButton, SecondaryButton };
+const NavigationButton: React.FC<ButtonProps> = ({ children, onClick, }) => {
+  return (
+    <button
+      className={`m-1 shadow-md bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-full`}
+      onClick={onClick}
+    >
+      {children}
+    </button>
+  );
+};
+
+export { Input, Select, Radio, PrimaryButton, SecondaryButton, NavigationButton };

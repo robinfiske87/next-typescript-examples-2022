@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Input, PrimaryButton, SecondaryButton } from '../components/reusableSchema';
+import { Input, PrimaryButton, SecondaryButton, NavigationButton } from '../components/reusableSchema';
 import { z } from "zod";
 
 const Home: React.FC = () => {
@@ -113,9 +113,9 @@ const Home: React.FC = () => {
         </div>
       )}
     
-  <SecondaryButton >
+  <NavigationButton >
     <Link href="/examples">To examples and API state handling</Link>
-  </SecondaryButton>
+  </NavigationButton>
     </main>
   );
 };
