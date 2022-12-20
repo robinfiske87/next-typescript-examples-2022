@@ -5,11 +5,10 @@ interface InputProps {
   name: string;
   value: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  className: string;
-  placeholder: string;
+  placeholder?: string;
 }
 
-const Input: FC<InputProps> = ({ label, name, value, onChange }) => {
+const Input: FC<InputProps> = ({ label, name, value, onChange, placeholder }) => {
   return (
     <label className="block text-gray-700 text-sm font-bold mb-2">
       {label}
@@ -19,6 +18,7 @@ const Input: FC<InputProps> = ({ label, name, value, onChange }) => {
         name={name}
         value={value}
         onChange={onChange}
+        placeholder={placeholder}
       />
     </label>
   );
@@ -80,16 +80,14 @@ const Radio: React.FC<RadioProps> = ({ label, name, options, value, onChange }) 
 
 interface ButtonProps {
   children: React.ReactNode;
-  type: string;
-  className: string;
   onClick?: () => void;
   disabled?: boolean;
 }
 
-const PrimaryButton: React.FC<ButtonProps> = ({ children, onClick, className }) => {
+const PrimaryButton: React.FC<ButtonProps> = ({ children, onClick }) => {
   return (
     <button
-      className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ${className}`}
+      className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded`}
       onClick={onClick}
     >
       {children}
@@ -97,10 +95,10 @@ const PrimaryButton: React.FC<ButtonProps> = ({ children, onClick, className }) 
   );
 };
 
-const SecondaryButton: React.FC<ButtonProps> = ({ children, onClick, className }) => {
+const SecondaryButton: React.FC<ButtonProps> = ({ children, onClick, }) => {
   return (
     <button
-      className={`bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded ${className}`}
+      className={`bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded`}
       onClick={onClick}
     >
       {children}

@@ -86,11 +86,11 @@ const Examples: React.FC = () => {
     <h1 className="text-3xl font-bold">Reusable Components</h1>
     <br/>
     <div>
-      <Input label="Input" name="input" value={inputValue} onChange={handleInputChange} className='' placeholder=''/>
+      <Input label="Input" name="input" value={inputValue} onChange={handleInputChange} />
       <Select label="Select" name="select" options={options} value={selectValue} onChange={handleSelectChange} />
       <Radio label="Radio" name="radio" options={options} value={radioValue} onChange={handleRadioChange} />
-      <PrimaryButton type='' className='' onClick={handleSubmit}>Submit</PrimaryButton>
-      <SecondaryButton type='' className='' onClick={handleReset}>Abort</SecondaryButton>
+      <PrimaryButton onClick={handleSubmit}>Submit</PrimaryButton>
+      <SecondaryButton onClick={handleReset}>Abort</SecondaryButton>
     </div>
     <br/>
     {submittedValues.length > 0 && <><h2 className="text-2xl font-bold">Submitted data</h2>
@@ -100,7 +100,7 @@ const Examples: React.FC = () => {
         ))}
     </div></>}
 
-    <SecondaryButton type="button" className=''>
+    <SecondaryButton type="button">
     <Link href="/">Back to form</Link>
   </SecondaryButton>
     <br/>

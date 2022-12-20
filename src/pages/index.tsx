@@ -69,7 +69,6 @@ const Home: React.FC = () => {
         name="name"
         value={formData.name}
         onChange={handleChange}
-        className="w-full py-2 px-3 rounded-md text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
         placeholder="Name"
       />
       <Input
@@ -77,7 +76,6 @@ const Home: React.FC = () => {
         name="email"
         value={formData.email}
         onChange={handleChange}
-        className="w-full py-2 px-3 rounded-md text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
         placeholder="Email"
       />
       <Input
@@ -85,19 +83,13 @@ const Home: React.FC = () => {
         name="message"
         value={formData.message}
         onChange={handleChange}
-        className="w-full py-2 px-3 rounded-md text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
         placeholder="Message"
       />
-      <PrimaryButton
-        type="submit"
-        className="w-full py-2 px-3 rounded-md text-white bg-blue-500 hover:bg-blue-700 focus:outline-none focus:shadow-outline"
-      >
+      <PrimaryButton>
         Submit
       </PrimaryButton>
       <SecondaryButton
-        type="button"
         onClick={handleAbort}
-        className="w-full py-2 px-3 rounded-md text-gray-700 hover:text-gray-800 focus:outline-none focus:shadow-outline"
         // disabled={Object.values(formData).every(val => val === '')}
       >
         Abort
@@ -117,7 +109,7 @@ const Home: React.FC = () => {
     })}
   </ul>
 )}
-  <SecondaryButton type="button" className=''>
+  <SecondaryButton >
     <Link href="/examples">To examples and API state handling</Link>
   </SecondaryButton>
     </main>
