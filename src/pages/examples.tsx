@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useQuery } from "react-query";
-import { Input, Select, Radio, PrimaryButton, SecondaryButton, NavigationButton } from '../components/reusableSchema';
+import { Input, Select, Radio, PrimaryButton, SecondaryButton, NavigationButton } from '../components/reusableComponents';
 
 // A function that fetches data from an API
 const fetchUsers = async () => {

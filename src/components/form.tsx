@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Input, PrimaryButton, SecondaryButton } from './reusableSchema';
+import { Input, PrimaryButton, SecondaryButton } from './reusableComponents';
 import { z } from "zod";
 
 const Form: React.FC = () => {

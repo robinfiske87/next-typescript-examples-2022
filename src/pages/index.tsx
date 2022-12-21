@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { NavigationButton } from '../components/reusableSchema';
+import { NavigationButton } from '../components/reusableComponents';
 import { Form } from '../components/form';
 
 
