@@ -1,16 +1,35 @@
-Download repo
+## Instructions for Nextjs Typescript example repo
 
-Navigate to root of repo
+This is a simple project to exemplify some reusable components, a simple form that lets you store the data, as well as some state handling of an API requests. It uses Tailwind for styling.
 
-npm i (or whatever manager package manager you use)
+#### How to set it up
 
-Initiate locally with npm run dev
+- Download repo locally
 
-Form validated by zod on start page. Examples of components and API state handling in /examples. Buttons with next/Link to navigate on both pages.
+- Navigate to root of repo in terminal
 
-Next framework using jsx(tsx) syntax. Typescript initiated. Styling in Tailwind.
+- Install packages with command: npm i (or whatever manager package manager you use)
 
-Storing data in an array which is submitted. Data is not persisted and is stored in state. 
-I am fetching from a json placeholder API. State is handled by React Query.
+- Initiate locally with npm run dev from root (nodemon is installed as a dev dependency)
 
-TODO: [ ] Fix redundant error message on pressing abort button when form is empty
+- View the project in you browser on localhost:3000 (or higher if port is taken)
+
+
+#### What is happening
+
+- You must fill in form with name, email and message. There are some validation being done before the form is submitted. 
+
+  1. Name cant have more than single spaces, and no numbers. 
+  2. Email must be valid.
+  3. Message cant be more than 100 characters long, and must be at least 2 characters long.
+  
+- The form is validated by zod. 
+
+- You can navigate to examples, or by providing /examples suffix to url.
+
+  1. Examples of the reusable components provided. 
+  The page is storing data in an array which is submitted. Data is not persisted and is stored in state. 
+
+  2.Examples of API state handling in /examples. This is a rendered out list from jsonplaceholder API. State is handled by React Query.
+
+TODO: [x] Fix redundant error message on pressing abort button when form is empty
