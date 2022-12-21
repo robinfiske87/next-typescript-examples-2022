@@ -12,8 +12,9 @@ const Input: FC<InputProps> = ({ label, name, value, onChange, placeholder }) =>
   return (
     <label className="block text-gray-700 text-sm font-bold mb-2">
       {label}
+      <br />
       <input
-        className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline m-1"
+        className="appearance-none border rounded w-5/6 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline m-1"
         type="text"
         name={name}
         value={value}
@@ -37,7 +38,7 @@ const Select: React.FC<SelectProps> = ({ label, name, options, value, onChange }
   <div className="mb-4">
     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor={name}>{label}</label>
     <select
-      className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline m-1"
+      className="block appearance-none w-5/6 bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline m-1"
       name={name}
       value={value}
       onChange={onChange}

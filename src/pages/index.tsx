@@ -63,6 +63,7 @@ const Home: React.FC = () => {
 
   return (
     <main className="mx-20 my-20 bg-indigo-50">
+      <h2 className="text-2xl font-bold mb-5 ml-1">Form</h2>
       <form onSubmit={handleSubmit} >
         <Input
           label='Name'

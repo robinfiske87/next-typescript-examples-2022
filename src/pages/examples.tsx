@@ -82,37 +82,37 @@ const Examples: React.FC = () => {
 
   return (
     <main className="mx-20 my-20 bg-indigo-50">
-    <h1 className="text-3xl font-bold">Reusable Components</h1>
-    <br/>
-    <div>
-      <Input label="Input" name="input" value={inputValue} onChange={handleInputChange} />
-      <Select label="Select" name="select" options={options} value={selectValue} onChange={handleSelectChange} />
-      <Radio label="Radio" name="radio" options={options} value={radioValue} onChange={handleRadioChange} />
-      <PrimaryButton onClick={handleSubmit}>Submit</PrimaryButton>
-      <SecondaryButton onClick={handleReset}>Abort</SecondaryButton>
-    </div>
-    <br/>
-    {submittedValues.length > 0 && <><h2 className="text-2xl font-bold">Submitted data</h2>
-    <div className="bg-indigo-200 p-4 rounded-lg shadow-lg m-1">
-    {submittedValues.length > 0 && submittedValues.map((value, index) => (
-          <li key={index} className="mb-4">{value}</li>
-        ))}
-    </div></>}
-
-    <NavigationButton >
-      <Link href="/">Back to form</Link>
-    </NavigationButton>
-    <br/>
-    <br/>
-    <h2 className="text-2xl font-bold">React Query</h2>
-      <div className="bg-indigo-200 p-4 rounded-lg shadow-lg m-1">
-        {data.map((user: User) => (
-          <div key={user.id} className="mb-4">
-            <h3 className="text-lg font-bold">{user.name}</h3>
-            <p className="text-sm text-gray-700">{user.email}</p>
-          </div>
-        ))}
+      <h1 className="text-3xl font-bold mb-5 ml-1">Reusable Components</h1>
+      <div className='mb-5'>
+        <Input label="Input" name="input" value={inputValue} onChange={handleInputChange} placeholder="Input"/>
+        <Select label="Select" name="select" options={options} value={selectValue} onChange={handleSelectChange} />
+        <Radio label="Radio" name="radio" options={options} value={radioValue} onChange={handleRadioChange} />
+        <PrimaryButton onClick={handleSubmit}>Submit</PrimaryButton>
+        <SecondaryButton onClick={handleReset}>Abort</SecondaryButton>
       </div>
+      {submittedValues.length > 0 && 
+        <>
+          <h2 className="text-2xl font-bold">Submitted data</h2>
+          <div className="bg-indigo-200 p-4 rounded-lg shadow-lg m-1">
+          {submittedValues.length > 0 && submittedValues.map((value, index) => (
+                <li key={index} className="mb-4">{value}</li>
+              ))}
+          </div>
+        </>}
+
+      <NavigationButton >
+        <Link href="/">Back to form</Link>
+      </NavigationButton>
+      
+      <h2 className="text-2xl font-bold mt-10 ml-1">React Query</h2>
+        <div className="bg-indigo-200 p-4 rounded-lg shadow-lg m-1">
+          {data.map((user: User) => (
+            <div key={user.id} className="mb-4">
+              <h3 className="text-lg font-bold">{user.name}</h3>
+              <p className="text-sm text-gray-700">{user.email}</p>
+            </div>
+          ))}
+        </div>
     </main>
   );
 };
