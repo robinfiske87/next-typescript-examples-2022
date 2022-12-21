@@ -82,7 +82,7 @@ const Examples: React.FC = () => {
 
   return (
     <main className="mx-20 my-20 bg-indigo-50">
-      <h1 className="text-3xl font-bold mb-5 ml-1">Reusable Components</h1>
+      <h1 className="text-2xl font-bold mb-5 ml-1">Reusable Components</h1>
       <div className='mb-5'>
         <Input label="Input" name="input" value={inputValue} onChange={handleInputChange} placeholder="Input"/>
         <Select label="Select" name="select" options={options} value={selectValue} onChange={handleSelectChange} />
