@@ -1,4 +1,4 @@
-import React, { FC, ChangeEvent } from 'react';
+import React from 'react';
 
 interface InputProps {
   label: string;
@@ -8,7 +8,7 @@ interface InputProps {
   placeholder?: string;
 }
 
-const Input: FC<InputProps> = ({ label, name, value, onChange, placeholder }) => {
+const Input: React.FC<InputProps> = ({ label, name, value, onChange, placeholder }) => {
   return (
     <label className="block text-gray-700 text-sm font-bold mb-2">
       {label}
@@ -31,7 +31,7 @@ interface SelectProps {
   name: string;
   options: { value: string; label: string }[];
   value: string;
-  onChange: (event: ChangeEvent<HTMLSelectElement>) => void;
+  onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
 const Select: React.FC<SelectProps> = ({ label, name, options, value, onChange }) => (
@@ -57,7 +57,7 @@ interface RadioProps {
   name: string;
   options: { value: string; label: string }[];
   value: string;
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const Radio: React.FC<RadioProps> = ({ label, name, options, value, onChange }) => (
