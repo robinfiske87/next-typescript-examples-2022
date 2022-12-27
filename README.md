@@ -21,7 +21,8 @@ This is a simple project to exemplify some reusable components, a simple form th
 
   1. Name cant have more than single spaces, and no numbers. 
   2. Email must be valid.
-  3. Message cant be more than 100 characters long, and must be at least 2 characters long.
+  3. Must choose an age bracket with radio buttons
+  4. Message cant be more than 100 characters long, and must be at least 2 characters long.
   
 - The form is validated by zod. 
 
