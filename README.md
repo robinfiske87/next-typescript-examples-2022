@@ -32,5 +32,3 @@ This is a simple project to exemplify some reusable components, a simple form th
   The page is storing data in an array which is submitted. Data is not persisted and is stored in state. 
 
   2. Examples of API state handling in /examples. This is a rendered out list from jsonplaceholder API. State is handled by React Query.
-
-TODO: [x] Fix redundant error message on pressing abort button when form is empty
