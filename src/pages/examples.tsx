@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useQuery } from "react-query";
-import { Input, Select, Radio, PrimaryButton, SecondaryButton, NavigationButton } from '../components/reusableComponents';
+import { Input, Select, Radio, PrimaryButton, SecondaryButton } from '../components/reusableComponents';
 
 // A function that fetches data from an API
 const fetchUsers = async () => {
@@ -83,33 +83,44 @@ const Examples: React.FC = () => {
   return (
     <main className="mx-20 my-20 bg-indigo-50">
       <h1 className="text-2xl font-bold mb-5 ml-1">Reusable Components</h1>
-      <div className='mb-5'>
+      <div className='mb-2'>
+
         <Input label="Input" name="input" value={inputValue} onChange={handleInputChange} placeholder="Input"/>
+
         <Select label="Select" name="select" options={options} value={selectValue} onChange={handleSelectChange} />
+
         <Radio label="Radio" name="radio" options={options} value={radioValue} onChange={handleRadioChange} />
-        <PrimaryButton onClick={handleSubmit}>Submit</PrimaryButton>
-        <SecondaryButton onClick={handleReset}>Abort</SecondaryButton>
+
+        <PrimaryButton type="submit" onClick={handleSubmit}>
+          Submit
+        </PrimaryButton>
+
+        <SecondaryButton type="alarm" onClick={handleReset}>
+          Abort
+        </SecondaryButton>
+
       </div>
       {submittedValues.length > 0 && 
         <>
           <h2 className="text-2xl font-bold">Submitted data</h2>
           <div className="bg-indigo-200 p-4 rounded-lg shadow-lg m-1">
           {submittedValues.length > 0 && submittedValues.map((value, index) => (
-                <li key={index} className="mb-4">{value}</li>
+                <li key={index} className="mb-1">{value}</li>
               ))}
           </div>
         </>}
 
-      <NavigationButton >
+      <PrimaryButton type="navigate" >
         <Link href="/">Back to form</Link>
-      </NavigationButton>
+      </PrimaryButton>
       
-      <h2 className="text-2xl font-bold mt-10 ml-1">React Query</h2>
+      <h2 className="text-2xl font-bold mt-5 ml-1">React Query</h2>
         <div className="bg-indigo-200 p-4 rounded-lg shadow-lg m-1">
           {data.map((user: User) => (
             <div key={user.id} className="mb-4">
               <h3 className="text-lg font-bold">{user.name}</h3>
               <p className="text-sm text-gray-700">{user.email}</p>
+              <hr/>
             </div>
           ))}
         </div>

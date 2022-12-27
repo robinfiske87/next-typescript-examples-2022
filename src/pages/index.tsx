@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { SecondaryButton, NavigationButton } from '../components/reusableComponents';
+import { PrimaryButton, SecondaryButton } from '../components/reusableComponents';
 import { Form } from '../components/form';
 
 export type StoredData = {
@@ -25,20 +25,22 @@ const Home: React.FC = () => {
       <Form setStoredData={setStoredData} />
 
       {/* Button to log the storedData state variable to the console */}
-      <SecondaryButton 
+      <PrimaryButton
+        type='submit' 
         onClick={() => console.log(storedData)}>Log data
-      </SecondaryButton>
+      </PrimaryButton>
 
       {/* Button to reset the storedData state variable to an empty data array */}
       <SecondaryButton 
+        type='reset'
         onClick={resetDataStore}>Remove Stored Data
       </SecondaryButton>
 
       {/* Button to navigate to the examples page */}
       <br/>
-      <NavigationButton >
+      <PrimaryButton type='navigate' >
         <Link href="/examples">To examples and API state handling</Link>
-      </NavigationButton>
+      </PrimaryButton>
     </main>
   );
 };

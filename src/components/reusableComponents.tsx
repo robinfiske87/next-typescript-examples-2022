@@ -66,7 +66,7 @@ const Radio: React.FC<RadioProps> = ({ label, name, options, value, onChange }) 
     {options.map((option) => (
   <label key={option.value} className="inline-block mr-4">
     <input
-      className="leading-tight"
+      className="leading-tight m-1"
       type="radio"
       name={name}
       value={option.value}
@@ -79,16 +79,50 @@ const Radio: React.FC<RadioProps> = ({ label, name, options, value, onChange }) 
   </div>
 );
 
-interface ButtonProps {
+interface PrimaryButtonProps {
+  type?: 'default' | 'submit' | 'navigate' | 'action'
   children: React.ReactNode;
   onClick?: () => void;
   disabled?: boolean;
 }
 
-const PrimaryButton: React.FC<ButtonProps> = ({ children, onClick }) => {
+const PrimaryButton: React.FC<PrimaryButtonProps> = 
+({ children, onClick, type }) => {
+  let buttonClasses = `bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-1 shadow-md`
+
+  if(type === 'submit') {buttonClasses = `bg-green-600 hover:bg-green-800 text-white font-bold py-2 px-4 rounded m-1 shadow-md`}
+
+  if(type === 'navigate') {buttonClasses = `bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-full m-1 shadow-md`}
+  
+  if(type === 'action') {buttonClasses = `bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded m-1 shadow-md`}
+
   return (
     <button
-      className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-1 shadow-md`}
+      className={buttonClasses}
+      onClick={onClick}>
+      {children}
+    </button>
+  );
+};
+
+interface SecondaryButtonProps {
+  type?: 'default' | 'alarm' | 'reset';
+  children: React.ReactNode;
+  onClick?: () => void;
+  disabled?: boolean;
+}
+
+const SecondaryButton: React.FC<SecondaryButtonProps> = 
+  ({ children, onClick, type }) => {
+  let buttonClasses = `bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded m-1 shadow-md`
+
+  if(type === 'alarm') {buttonClasses = `bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded m-1 shadow-md`}
+
+  if(type === 'reset') {buttonClasses = `bg-orange-500 hover:bg-orange-600 text-gray-800 font-bold py-2 px-4 rounded m-1 shadow-md`}
+
+  return (
+    <button
+      className={buttonClasses}
       onClick={onClick}
     >
       {children}
@@ -96,26 +130,5 @@ const PrimaryButton: React.FC<ButtonProps> = ({ children, onClick }) => {
   );
 };
 
-const SecondaryButton: React.FC<ButtonProps> = ({ children, onClick, }) => {
-  return (
-    <button
-      className={`bg-orange-300 hover:bg-orange-400 text-gray-800 font-bold py-2 px-4 rounded m-1 shadow-md`}
-      onClick={onClick}
-    >
-      {children}
-    </button>
-  );
-};
 
-const NavigationButton: React.FC<ButtonProps> = ({ children, onClick, }) => {
-  return (
-    <button
-      className={`m-1 shadow-md bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-full`}
-      onClick={onClick}
-    >
-      {children}
-    </button>
-  );
-};
-
-export { Input, Select, Radio, PrimaryButton, SecondaryButton, NavigationButton };
+export { Input, Select, Radio, PrimaryButton, SecondaryButton };
