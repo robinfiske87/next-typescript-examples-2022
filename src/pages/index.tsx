@@ -4,7 +4,7 @@ import { PrimaryButton, SecondaryButton } from '../components/reusableComponents
 import { Form } from '../components/form';
 
 export type StoredData = {
-  data: (string | { name: string; email: string; message: string; })[];
+  data: (string | { name: string; email: string; ageBracket: string; message: string; })[];
 };
 
 const Home: React.FC = () => {
