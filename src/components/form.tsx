@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Input, PrimaryButton, SecondaryButton, Radio } from './reusableComponents';
 import { z } from "zod";
+import { formDataSchema } from '../utils/schemas';
 import type { StoredData } from '../pages/index';
 
 // Props for the form component.
@@ -23,13 +24,17 @@ const Form: React.FC<FormProps> = (props) => {
     ageBracket: '',
     message: ''
   });
-  // Use state for the stored form data.
+
+  // Use state for the stored form data. This is to exemplify state handling.
   const [storedForm, setStoredForm] = useState({
     name: '',
     email: '',
     ageBracket: '',
     message: ''
   });
+
+    // Use state for form validation errors.
+    const [errors, setErrors] = useState<string[]>([]);
 
   // Use effect to update the formData state variable when the radioValue state variable changes.
   useEffect(() => {
@@ -39,9 +44,6 @@ const Form: React.FC<FormProps> = (props) => {
     }));  
   }, [radioValue]);
   
-  // Use state for form validation errors.
-  const [errors, setErrors] = useState<string[]>([]);
-
   // An array of options to be used in the Select and Radio components
   const ageOptions = [
     { value: 'under 18', label: 'under 18' },
@@ -50,64 +52,8 @@ const Form: React.FC<FormProps> = (props) => {
     { value: '41-67', label: '41-67' },
     { value: '68+', label: '68+' },];
 
-  // A function to be called when the value of the Radio component changes
-  const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setRadioValue(event.target.value);
-  };
 
-  // Schema for form data validation.
-  const formDataSchema = z.object({
-    name: z.string().min(1).max(40).regex(/^[a-zA-Z]+(\s[a-zA-Z]+)?$/), // Name can be any string between 1 and 40 characters long.
-    email: z.string().email(), // Email must be a valid email address.
-    ageBracket: z.string().min(1).max(10), // Age bracket can be any string between 1 and 40 characters long.
-    message: z.string().min(1).max(100) // Message can be any string between 1 and 100 characters long.
-  });
-
-    // Event handler for form input changes.
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setFormData({ ...formData, [name]: value });
-    };
-  
-    // Event handler for form submission.
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    // Check if all fields are empty and return if true
-    if (Object.values(formData).every(val => val === '')) return setErrors([]);
-    try {
-      const validatedFormData = formDataSchema.parse(formData);
-      setStoredForm(validatedFormData);
-      setErrors([]);
-      // submit validatedFormData to server or do something else with it here. I am just storing it in a state array in the index.tsx file for now. It can be displayed in the console or removed with the presented buttons.
-      setStoredData((prevStoredData) => ({ ...prevStoredData, data: [...prevStoredData.data, validatedFormData] }));
-
-    } catch (error ) {
-      if(error instanceof z.ZodError)
-      setErrors(error.issues.map(issue => issue.message));
-    }
-  };
-
-  const handleAbort = () => {
-    setRadioValue('');
-
-    setFormData({
-      name: '',
-      email: '',
-      ageBracket: '',
-      message: ''
-    })
-
-    setStoredForm({
-      name: '',
-      email: '',
-      ageBracket: '',
-      message: ''
-    })
-
-    setErrors([]);
-    
-  };
-
+  // This is the form as shown in the index page. The form is a controlled component, meaning that the form data is stored in the formData state variable. The form data is stored in a state. This is to exemplify state handling. The forms created are pushed to an array. I have added a button to log the data to the console. I have also added a button to reset the data store to an empty array.
   return (
     <>
       {/* Form header */}
@@ -184,6 +130,62 @@ const Form: React.FC<FormProps> = (props) => {
     
     </>
   );
+
+
+  // Functions for handling form events. They are defined here as to not clutter the JSX.
+
+  // A function to be called when the value of the Radio component changes
+  function handleRadioChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setRadioValue(event.target.value);
+  }
+
+  // Event handler for form input changes.
+  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const { name, value } = event.target;
+    setFormData({ ...formData, [name]: value });
+    }
+
+  // Event handler for form submission.
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    // Check if all fields are empty and return if true
+    if (Object.values(formData).every(val => val === '')) return setErrors([]);
+    
+    try {
+      const validatedFormData = formDataSchema.parse(formData);
+      setStoredForm(validatedFormData);
+      setErrors([]);
+      // submit validatedFormData to server or do something else with it here. I am just storing it in a state array in the index.tsx file for now. It can be displayed in the console or removed with the presented buttons.
+      setStoredData((prevStoredData) => ({ ...prevStoredData, data: [...prevStoredData.data, validatedFormData] }));
+
+    } catch (error ) {
+      if(error instanceof z.ZodError)
+      setErrors(error.issues.map(issue => issue.message));
+    }
+  }
+
+  function handleAbort() {
+    setRadioValue('')
+
+    setFormData({
+      name: '',
+      email: '',
+      ageBracket: '',
+      message: ''
+    })
+
+    setStoredForm({
+      name: '',
+      email: '',
+      ageBracket: '',
+      message: ''
+    })
+    
+    setErrors([]);
+  }
+  
 };
+
+
 
 export { Form };
