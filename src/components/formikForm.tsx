@@ -70,7 +70,9 @@ const FormikForm: React.FC<FormProps> = (props) => {
       {({ isSubmitting, resetForm, errors }) => (
         <Form>
           {/* Form header */}
-          <h2 className="mb-5 ml-1 text-2xl font-bold text-gray-800">Form</h2>
+          <h2 className="mb-5 ml-1 text-2xl font-bold text-gray-800">
+            Formik Form
+          </h2>
 
           {/* Form element */}
           {/* Input for name */}
