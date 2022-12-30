@@ -18,7 +18,7 @@ const FormikForm: React.FC<FormProps> = (props) => {
   // Destructure the setStoredData prop from the props object.
   const { setStoredData } = props;
 
-  // An array of options to be used in the Select and Radio components
+  // An array of options to be used in the Radio component
   const ageOptions = [
     { value: "under 18", label: "under 18" },
     { value: "18-25", label: "18-25" },
@@ -35,6 +35,7 @@ const FormikForm: React.FC<FormProps> = (props) => {
         ageBracket: "",
         message: "",
       }}
+      validateOnBlur={false}
       validate={(values) => {
         const errors: { [key: string]: string } = {};
 
@@ -63,7 +64,9 @@ const FormikForm: React.FC<FormProps> = (props) => {
         return errors;
       }}
       onSubmit={(values, { setSubmitting }) => {
-        setStoredData({ data: [values] });
+        setStoredData((prevStoredData) => ({
+          ...prevStoredData,
+          data: [...prevStoredData.data,values] }));
         setSubmitting(false);
       }}
     >
@@ -107,18 +110,19 @@ const FormikForm: React.FC<FormProps> = (props) => {
           )}
 
           {/* Button to submit data to state, or use something else if you want it to persist */}
-          <PrimaryButton type="button" disabled={isSubmitting}>
+          <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-1 shadow-md"  disabled={isSubmitting}>
             Submit
-          </PrimaryButton>
+          </button>
 
           {/* Button to clear the form. Only available if something is written in the form*/}
-          <SecondaryButton
-            type="button"
+          <button
+            type="reset"
+            className="bg-orange-400 hover:bg-orange-500 text-gray-800 font-bold py-2 px-4 rounded m-1 shadow-md`"
             disabled={isSubmitting}
-            onClick={resetForm}
+            onClick={() => {resetForm()}}
           >
             Clear Form
-          </SecondaryButton>
+          </button>
         </Form>
       )}
     </Formik>

@@ -34,6 +34,6 @@ This is a simple project to exemplify some reusable components, a simple form th
   2. Examples of API state handling in /examples. This is a rendered out list from jsonplaceholder API. State is handled by React Query.
 
 #### Alternative form
-- I made a similar form using the formik library for building react forms. It is commented out in the index file. Alternatively see it at the url-endpoint /formik.
+- I made a similar form using the formik library for building react forms. It is commented out in the index file. Alternatively see it at the url-endpoint /formik or follow navigation-button.
 
-TODO: Improve error feedback when not chosing a radio button on form
+TODO: Improve error feedback to be more succinct

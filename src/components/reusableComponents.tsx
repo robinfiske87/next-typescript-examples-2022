@@ -115,22 +115,23 @@ const PrimaryButton: React.FC<PrimaryButtonProps> = ({
   onClick,
   type,
 }) => {
-  let buttonClasses = `bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-1 shadow-md`;
-
-  if (type === "button") {
-    buttonClasses = `bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-1 shadow-md`;
-  }
-
-  if (type === "submit") {
-    buttonClasses = `bg-green-600 hover:bg-green-800 text-white font-bold py-2 px-4 rounded m-1 shadow-md`;
-  }
-
-  if (type === "navigate") {
-    buttonClasses = `bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-full m-1 shadow-md`;
-  }
-
-  if (type === "action") {
-    buttonClasses = `bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded m-1 shadow-md`;
+  let buttonClasses;
+  
+  switch (type) {
+    case "button":
+      buttonClasses = `bg-green-600 hover:bg-green-800 text-white font-bold py-2 px-4 rounded m-1 shadow-md`;
+      break;
+    case "submit":
+      buttonClasses = `bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-1 shadow-md`;
+      break;
+    case "navigate":
+      buttonClasses = `bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-full m-1 shadow-md`;
+      break;
+    case "action":
+      buttonClasses = `bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded m-1 shadow-md`;
+      break;
+    default:
+      buttonClasses = `bg-green-600 hover:bg-green-800 text-white font-bold py-2 px-4 rounded m-1 shadow-md`;
   }
 
   return (
@@ -152,18 +153,20 @@ const SecondaryButton: React.FC<SecondaryButtonProps> = ({
   onClick,
   type,
 }) => {
-  let buttonClasses = `bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded m-1 shadow-md`;
+  let buttonClasses;
 
-  if (type === "button") {
-    buttonClasses = `bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded m-1 shadow-md`;
-  }
-
-  if (type === "alarm") {
-    buttonClasses = `bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded m-1 shadow-md`;
-  }
-
-  if (type === "reset") {
-    buttonClasses = `bg-orange-400 hover:bg-orange-500 text-gray-800 font-bold py-2 px-4 rounded m-1 shadow-md`;
+  switch (type) {
+    case "button":
+      buttonClasses = `bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded m-1 shadow-md`;
+      break;
+    case "alarm":
+      buttonClasses = `bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded m-1 shadow-md`;
+      break;
+    case "reset":
+      buttonClasses = `bg-orange-400 hover:bg-orange-500 text-gray-800 font-bold py-2 px-4 rounded m-1 shadow-md`;
+      break;
+    default:
+      buttonClasses = `bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded m-1 shadow-md`;
   }
 
   return (

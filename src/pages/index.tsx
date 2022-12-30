@@ -51,6 +51,9 @@ const Home: React.FC = () => {
         {/* Button to navigate to the examples page */}
         <br />
         <PrimaryButton type="navigate">
+          <Link href="/formik">To formik form</Link>
+        </PrimaryButton>
+        <PrimaryButton type="navigate">
           <Link href="/examples">To examples and API state handling</Link>
         </PrimaryButton>
       </div>
