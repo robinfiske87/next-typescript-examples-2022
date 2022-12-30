@@ -104,7 +104,7 @@ const Radio: React.FC<RadioProps> = ({
 );
 
 interface PrimaryButtonProps {
-  type?: "default" | "submit" | "navigate" | "action";
+  type?: "default" |"button" | "submit" | "navigate" | "action";
   children: React.ReactNode;
   onClick?: () => void;
   disabled?: boolean;
@@ -116,6 +116,10 @@ const PrimaryButton: React.FC<PrimaryButtonProps> = ({
   type,
 }) => {
   let buttonClasses = `bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-1 shadow-md`;
+
+  if (type === "button") {
+    buttonClasses = `bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-1 shadow-md`;
+  }
 
   if (type === "submit") {
     buttonClasses = `bg-green-600 hover:bg-green-800 text-white font-bold py-2 px-4 rounded m-1 shadow-md`;
@@ -137,7 +141,7 @@ const PrimaryButton: React.FC<PrimaryButtonProps> = ({
 };
 
 interface SecondaryButtonProps {
-  type?: "default" | "alarm" | "reset";
+  type?: "default" | "button" | "alarm" | "reset";
   children: React.ReactNode;
   onClick?: () => void;
   disabled?: boolean;
@@ -149,6 +153,10 @@ const SecondaryButton: React.FC<SecondaryButtonProps> = ({
   type,
 }) => {
   let buttonClasses = `bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded m-1 shadow-md`;
+
+  if (type === "button") {
+    buttonClasses = `bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded m-1 shadow-md`;
+  }
 
   if (type === "alarm") {
     buttonClasses = `bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded m-1 shadow-md`;
