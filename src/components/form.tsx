@@ -122,7 +122,7 @@ const Form: React.FC<FormProps> = (props) => {
           <div className="bg-slate-50 p-3 rounded border overflow-auto">
             <p className="text-wrap">Name: {storedForm.name}</p>
             <p className="text-wrap">
-              Email:: {storedForm.email}
+              Email: {storedForm.email}
             </p>
             <p className="text-wrap">
               Age Bracket: {storedForm.ageBracket}
