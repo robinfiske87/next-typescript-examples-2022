@@ -104,7 +104,7 @@ const Radio: React.FC<RadioProps> = ({
 );
 
 interface PrimaryButtonProps {
-  type?: "default" |"button" | "submit" | "navigate" | "action";
+  type?: "default" | "button" | "submit" | "navigate" | "action";
   children: React.ReactNode;
   onClick?: () => void;
   disabled?: boolean;

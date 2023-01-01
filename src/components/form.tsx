@@ -14,6 +14,13 @@ type FormProps = {
   setStoredData: React.Dispatch<React.SetStateAction<StoredData>>; // Function to set the stored data state in the parent component.
 };
 
+type FormState = {
+  name: string;
+  email: string;
+  ageBracket: string;
+  message?: string;
+};
+
 // Form component.
 const Form: React.FC<FormProps> = (props) => {
   // Destructure the setStoredData prop from the props object.
@@ -28,7 +35,7 @@ const Form: React.FC<FormProps> = (props) => {
   });
 
   // Use state for the stored form data. This is to exemplify state handling.Redundant considering the storedData state variable in the parent component.
-  const [storedForm, setStoredForm] = useState({
+  const [storedForm, setStoredForm] = useState<FormState>({
     name: "",
     email: "",
     ageBracket: "",

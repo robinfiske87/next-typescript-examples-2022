@@ -6,7 +6,7 @@ import {
   Input,
   Radio,
 } from "./reusableComponents";
-import type { StoredData } from "../pages/index";
+import type { StoredData } from "../pages/formik";
 
 // Props for the form component.
 type FormProps = {

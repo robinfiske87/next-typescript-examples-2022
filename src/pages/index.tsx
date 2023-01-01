@@ -7,7 +7,6 @@ import {
 
 // Import the Form component. I have one custom form and one form created with Formik. In the custom one, validation is done with zod. In the Formik one, validation is done with Formik.
 import { Form } from "../components/form";
-//import FormikForm from "../components/formikForm";
 
 export type StoredData = {
   data: (
