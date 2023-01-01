@@ -37,6 +37,8 @@ const FormikForm: React.FC<FormProps> = (props) => {
         ageBracket: "",
         message: "",
       }}
+      validateOnBlur={false}
+      validateOnChange={false}
       validationSchema={toFormikValidationSchema(Schema)}
       onSubmit={(values, { setSubmitting }) => {
         setStoredData((prevStoredData) => ({
