@@ -7,5 +7,5 @@ export const formDataSchema = z.object({
     message: "Must be a valid email",
   }), // Email must be a valid email address.
   ageBracket: z.string().min(1, {message: "Must choose age bracket" }).max(10, {message: "Must choose age bracket" }), // Age bracket can be any string between 1 and 12 characters long.
-  message: z.string().min(0).max(140, {message: "Message cant only be 140 characters long" }).optional() // Message can be any string between 1 and 100 characters long. Message is optional  
+  message: z.string().min(0).max(140, {message: "Message can only be 140 characters long" }).optional() // Message can be any string between 1 and 100 characters long. Message is optional  
   });
