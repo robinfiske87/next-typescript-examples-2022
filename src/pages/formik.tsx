@@ -10,7 +10,7 @@ import FormikForm from "../components/formikForm";
 export type StoredData = {
   data: (
     | string
-    | { name: string; email: string; ageBracket: string; message: string }
+    | { name: string; email: string; ageBracket: string; message?: string }
   )[];
 };
 

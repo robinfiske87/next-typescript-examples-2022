@@ -12,7 +12,7 @@ import { Form } from "../components/form";
 export type StoredData = {
   data: (
     | string
-    | { name: string; email: string; ageBracket: string; message: string }
+    | { name: string; email: string; ageBracket: string; message?: string }
   )[];
 };
 
