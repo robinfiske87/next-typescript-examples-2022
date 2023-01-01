@@ -1,9 +1,9 @@
 import React from "react";
 import { Formik, Form, Field } from "formik";
+import { formDataSchema } from "../utils/schemas";
+import { toFormikValidationSchema } from 'formik-adapter-zod';
 import {
   Input,
-  PrimaryButton,
-  SecondaryButton,
   Radio,
 } from "./reusableComponents";
 import type { StoredData } from "../pages/index";
@@ -17,6 +17,8 @@ type FormProps = {
 const FormikForm: React.FC<FormProps> = (props) => {
   // Destructure the setStoredData prop from the props object.
   const { setStoredData } = props;
+
+  const Schema = formDataSchema;
 
   // An array of options to be used in the Radio component
   const ageOptions = [
@@ -35,34 +37,7 @@ const FormikForm: React.FC<FormProps> = (props) => {
         ageBracket: "",
         message: "",
       }}
-      validateOnBlur={false}
-      validate={(values) => {
-        const errors: { [key: string]: string } = {};
-
-        if (!values.name) {
-          errors.name = "Required";
-        } else if (!/^[a-zA-Z ]+$/.test(values.name)) {
-          errors.name = "Invalid name";
-        }
-
-        if (!values.email) {
-          errors.email = "Required";
-        } else if (
-          !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-        ) {
-          errors.email = "Invalid email address";
-        }
-
-        if (!values.ageBracket) {
-          errors.ageBracket = "Required";
-        }
-
-        if (values.message.length > 140) {
-          errors.message = "Message must be 140 characters or less";
-        }
-
-        return errors;
-      }}
+      validationSchema={toFormikValidationSchema(Schema)}
       onSubmit={(values, { setSubmitting }) => {
         setStoredData((prevStoredData) => ({
           ...prevStoredData,
